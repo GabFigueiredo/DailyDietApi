@@ -1,2 +1,8 @@
 node_modules
+
+// Database
 db/app.db
+
+// Environments
+.env
+.env.test

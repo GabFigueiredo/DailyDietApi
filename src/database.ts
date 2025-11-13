@@ -1,4 +1,5 @@
-import { knex as setupKnex, Knex } from "knex";
+import knex from "knex";
+import type { Knex } from 'knex'
 import "dotenv/config";
 import { env } from "./env/index.js";
 
@@ -14,4 +15,4 @@ export const config: Knex.Config = {
   },
 };
 
-export const knex = setupKnex(config);
+export const db = knex(config);
