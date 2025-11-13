@@ -1,16 +1,24 @@
 // eslint-disable-next-line
-import { Knex } from 'knex'
+import { Knex } from "knex";
 // ou faça apenas:
 // import 'knex'
 
-declare module 'knex/types/tables' {
+declare module "knex/types/tables" {
   export interface Tables {
-    transactions: {
-      id: string
-      title: string
-      amount: number
-      created_at: string
-      session_id?: string
-    }
+    users: {
+      id: string;
+      email: string;
+      name: string;
+      password: string;
+    };
+
+    meals: {
+      id: string;
+      name: string;
+      description: string;
+      dateAndTime: Date;
+      isOnDiet?: boolean;
+      user_id: string;
+    };
   }
 }
