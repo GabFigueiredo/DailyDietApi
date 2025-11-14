@@ -1,6 +1,5 @@
 import { execSync } from "child_process";
-import { beforeEach, describe } from "node:test";
-import { afterAll, beforeAll, it } from "vitest";
+import { afterAll, beforeAll, beforeEach, describe, it } from "vitest";
 import request from "supertest";
 import { app } from "../src/app.js";
 
@@ -18,23 +17,22 @@ describe("Meal Routes", () => {
     execSync("npm run knex migrate:latest");
   });
 
-  it("should create a meal", async () => {
-    const createUserResponse = await request(app.server)
-    .post("/user")
-    .send({
-      email: "gab@gab.com",
-      name: "gab",
-      password: "senha",
-    })  
+  it.only("should create a meal", async () => {
+    const response = await request(app.server)
+      .post("/user")
+      .send({
+        email: "gab@gab.com",
+        name: "gab",
+        password: "senha",
+      })
+      .expect(201);
 
-    console.log('header da primeira requisição:', createUserResponse.headers)
+    console.log(response.get("Set-Cookie"));
 
-    const cookies = createUserResponse.get('Set-Cookie');
-    console.log('cookies da primeira requisição:', cookies)
-
+    const cookies = response.get("Set-Cookie");
     await request(app.server)
       .post("/meal")
-      .set('Cookie', cookies ?? [])
+      .set("Cookie", cookies ?? [])
       .send({
         name: "Steak",
         description: "A Delicious meal",

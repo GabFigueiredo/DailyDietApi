@@ -1,7 +1,7 @@
 node_modules
 
 // Database
-db/app.db
+db/*.db
 
 // Environments
 .env
