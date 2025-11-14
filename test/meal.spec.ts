@@ -19,14 +19,22 @@ describe("Meal Routes", () => {
   });
 
   it("should create a meal", async () => {
-    await request(app.server).post("/user").send({
+    const createUserResponse = await request(app.server)
+    .post("/user")
+    .send({
       email: "gab@gab.com",
       name: "gab",
       password: "senha",
-    });
+    })  
+
+    console.log('header da primeira requisição:', createUserResponse.headers)
+
+    const cookies = createUserResponse.get('Set-Cookie');
+    console.log('cookies da primeira requisição:', cookies)
 
     await request(app.server)
       .post("/meal")
+      .set('Cookie', cookies ?? [])
       .send({
         name: "Steak",
         description: "A Delicious meal",

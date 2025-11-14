@@ -5,7 +5,7 @@ import { mealRoutes } from "./routes/meal.js";
 
 export const app = fastify();
 
-app.register(cookie);
+await app.register(cookie);
 
 app.register(userRoutes, {
   prefix: "/user",

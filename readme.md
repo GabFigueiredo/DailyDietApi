@@ -7,16 +7,15 @@
 
 3. Deve ser possível registrar uma refeição vinculada a um usuário.
 
-4. Deve ser possível editar qualquer campo de uma refeição (nome, descrição, data e hora, `isOnDiet`) desde que o usuário seja o criador.
+4. Deve ser possível editar qualquer campo de uma refeição desde que o usuário seja o criador.
 
 5. Deve ser possível apagar uma refeição. Apenas o usuário criador pode apagar sua refeição.
 
-6. Deve ser possível listar todas as refeições pertencentes ao usuário autenticado, com paginação opcional.
+6. Deve ser possível listar todas as refeições pertencentes ao usuário autenticado.
 
 7. Deve ser possível visualizar os detalhes de uma única refeição pelo id, apenas se for do usuário autenticado.
 
 8. Deve ser possível recuperar, para o usuário autenticado:
-
    - Quantidade total de refeições registradas.
    - Quantidade total de refeições dentro da dieta.
    - Quantidade total de refeições fora da dieta.

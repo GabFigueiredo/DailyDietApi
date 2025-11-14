@@ -7,7 +7,7 @@ export function mealRoutes(app: FastifyInstance) {
   app.post(
     "/",
     {
-      preHandler: checkSessionIdExists,
+      preHandler: [checkSessionIdExists],
     },
     async (request, reply) => {
       const zodSchema = z.object({
@@ -22,10 +22,12 @@ export function mealRoutes(app: FastifyInstance) {
       if (bodyParse.success === false) {
         return reply.status(406).send();
       }
-
       const userId = request.cookies.userId;
 
-      console.log(userId);
+      if (!userId) {
+        console.log("Não encontrou o cookie na criação da refeição")
+        return reply.status(403).send();
+      }
 
       const userExists = await db("users").where("id", userId);
 
